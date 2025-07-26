@@ -4,27 +4,23 @@ namespace OneBeyondApi.DataAccess
 {
     public class BorrowerRepository : IBorrowerRepository
     {
-        public BorrowerRepository()
+        private readonly LibraryContext context;
+
+        public BorrowerRepository(LibraryContext context)
         {
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public List<Borrower> GetBorrowers()
+
+        public IReadOnlyList<Borrower> GetBorrowersAll()
         {
-            using (var context = new LibraryContext())
-            {
-                var list = context.Borrowers
-                    .ToList();
-                return list;
-            }
+            return [.. context.Borrowers];
         }
 
         public Guid AddBorrower(Borrower borrower)
         {
-            using (var context = new LibraryContext())
-            {
-                context.Borrowers.Add(borrower);
-                context.SaveChanges();
-                return borrower.Id;
-            }
+            context.Borrowers.Add(borrower);
+            context.SaveChanges();
+            return borrower.Id;
         }
     }
 }

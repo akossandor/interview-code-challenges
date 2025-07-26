@@ -1,18 +1,22 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using OneBeyondApi.DataAccess;
+using OneBeyondApi.Infrastructure;
 using OneBeyondApi.Model;
 using System.Collections;
 
-namespace OneBeyondApi.Controllers
+namespace OneBeyondApi.Controllers.V1
 {
     [ApiController]
     [Route("[controller]")]
-    public class AuthorController : ControllerBase
+    [ApiVersion(ApiVersions.V1)]
+    [ApiExplorerSettings(GroupName = ApiVersions.MajorV1User)]
+    public class AuthorsController : ControllerBase
     {
-        private readonly ILogger<AuthorController> _logger;
+        private readonly ILogger<AuthorsController> _logger;
         private readonly IAuthorRepository _authorRepository;
 
-        public AuthorController(ILogger<AuthorController> logger, IAuthorRepository authorRepository)
+        public AuthorsController(ILogger<AuthorsController> logger, IAuthorRepository authorRepository)
         {
             _logger = logger;
             _authorRepository = authorRepository;   

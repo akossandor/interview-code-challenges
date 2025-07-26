@@ -4,8 +4,8 @@ namespace OneBeyondApi.DataAccess
 {
     public interface IBorrowerRepository
     {
-        public List<Borrower> GetBorrowers();
+        public IReadOnlyList<Borrower> GetBorrowersAll();
 
-        public Guid AddBorrower(Borrower borrower);
+        Guid AddBorrower(Borrower borrower);
     }
 }

@@ -1,11 +1,13 @@
 ﻿using OneBeyondApi.Model;
+using OneBeyondApi.QueryResults;
 
 namespace OneBeyondApi.DataAccess
 {
     public interface ICatalogueRepository
     {
-        public List<BookStock> GetCatalogue();
+        public IReadOnlyList<BookStock> GetAll();
+        public CatalogueOnLoan GetOnLoan(bool shouldListBooks);
 
-        public List<BookStock> SearchCatalogue(CatalogueSearch search);
+        public IReadOnlyList<BookStock> SearchCatalogue(CatalogueSearch search);
     }
 }
