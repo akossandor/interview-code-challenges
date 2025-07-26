@@ -2,7 +2,8 @@
 {
     public class CatalogueSearch
     {
-        public string BookName { get; set; }
-        public string Author { get; set; }
+        public required string BookName { get; set; }
+        
+        public required string Author { get; set; }
     }
 }
